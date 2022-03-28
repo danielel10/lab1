@@ -4,6 +4,7 @@
 
 
 int flag_e(FILE *input, FILE *output, int c,int add_sub, int num_of_letters);
+int flag_i(FILE *input, FILE *output, int c,int add_sub, int num_of_letters);
 
 int main(int argc, char *argv[]) {
     FILE * output= stdout;
@@ -11,6 +12,7 @@ int main(int argc, char *argv[]) {
     FILE * err_put = stderr;
     FILE * file;
     int i;
+    int c;
     int flag = 0;
     int counter = 0;
     int num_of_letters = 0;
@@ -43,14 +45,19 @@ int main(int argc, char *argv[]) {
             for (j = 2,k = 0; j < strlen(argv[i]) ; ++j, k++) {
                 filename[k] = argv[i][j];
             }
+            printf("%s",filename);
             file = fopen(filename,"r");
+            if(file == NULL) {
+                fprintf(err_put, "empty file\n");
+                return 0;
+            }
         }
     }
 
-    int c = (fgetc(input));
     switch (flag) {
 
         case 0: {
+            c = (fgetc(input));
             while(c != EOF) {
                 if((c <= 'Z') & (c >= 'A'))
                     c = '.';
@@ -61,6 +68,7 @@ int main(int argc, char *argv[]) {
         }
 
         case 'D': {
+            c = (fgetc(input));
             while (c != EOF) {
                 while (c != '\n') {
                     int cha = c;
@@ -80,11 +88,13 @@ int main(int argc, char *argv[]) {
             break;
         }
         case 'e': {
+            c = (fgetc(input));
             flag_e(input,output,c,add_sub,num_of_letters);
             break;
         }
         case 'i': {
-            flag_e(file,output,c,add_sub,num_of_letters);
+            c = (fgetc(file));
+            flag_i(file,output,c,add_sub,num_of_letters);
         }
     }
 
@@ -97,6 +107,43 @@ int main(int argc, char *argv[]) {
 
 int flag_e(FILE *input, FILE *output, int c,int add_sub, int num_of_letters) {
     while(c != EOF) {
+        int first_chara = c;
+        if (add_sub == '+' ) {
+            while( c != '\n'){
+                putc(c,output);
+                c = (fgetc(input));
+            }
+            int j;
+            for (j = 0; j < num_of_letters; ++j) {
+                putc(first_chara,output);
+            }
+        }
+        else {
+            int j;
+            for (j = 0; j < num_of_letters; ++j) {
+                if (c == '\n') {
+                    fprintf(output, "-NONE-");
+                    j = num_of_letters + 1;
+                }
+                else
+                    c = (fgetc(input));
+            }
+            while( c != '\n'){
+                putc(c,output);
+                c = (fgetc(input));
+                j = num_of_letters + 2;
+            }
+            if( j != num_of_letters + 2 )
+                fprintf(output, "-NONE-");
+        }
+        fprintf(output,"\n");
+        c = (fgetc(input));
+    }
+    return 0;
+}
+
+int flag_i(FILE *input, FILE *output, int c,int add_sub, int num_of_letters) {
+    while(!feof(input)) {
         int first_chara = c;
         if (add_sub == '+' ) {
             while( c != '\n'){
