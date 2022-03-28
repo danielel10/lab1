@@ -18,10 +18,10 @@ int main(int argc, char *argv[]) {
     int num_of_letters = 0;
     int add_sub = 0;
     for (i = 1; i < argc; ++i) {
-        if(strcmp(argv[i],"-D")==0) {
+        if(argv[i][1] == 'D') {
             flag = 'D';
         }
-        else if( strstr(argv[i],"+e") != NULL || strstr(argv[i],"-e") != NULL){
+        else if( argv[i][1] == 'e' ){
             if ((argv[i][2] <= 'F' && argv[i][2] >= 'A') || (argv[i][2] >= '0' && argv[i][2] <= '9')) {
                 add_sub = argv[i][0];
                 if (flag != 'i' && flag != 'o')
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
             }
 
         }
-        else if(strstr(argv[i],"-i") != NULL){
+        else if( argv[i][1] == 'i' ){
             flag = 'i';
             char filename[strlen(argv[i] - 1)];
             int j;
@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
                 return 0;
             }
         }
-        else if(strstr(argv[i],"-o") != NULL){
+        else if( argv[i][1] == 'o' ){
             flag = 'o';
             char filename[strlen(argv[i] - 1)];
             int j;

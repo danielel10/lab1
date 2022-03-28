@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
         if(strcmp(argv[i],"-D")==0) {
             flag = 'D';
         }
-        else if( strstr(argv[i],"+e") != NULL || strstr(argv[i],"-e") != NULL){
+        else if( argv[i][1] == 'e'){
             if ((argv[i][2] <= 'F' && argv[i][2] >= 'A') || (argv[i][2] >= '0' && argv[i][2] <= '9')) {
                 add_sub = argv[i][0];
                 if (flag != 'i')
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
             }
 
         }
-        else if(strstr(argv[i],"-i") != NULL){
+        else if(argv[i][1] == 'i' ){
             flag = 'i';
             char filename[strlen(argv[i] - 1)];
             int j;
@@ -45,7 +45,6 @@ int main(int argc, char *argv[]) {
             for (j = 2,k = 0; j < strlen(argv[i]) ; ++j, k++) {
                 filename[k] = argv[i][j];
             }
-            printf("%s",filename);
             file = fopen(filename,"r");
             if(file == NULL) {
                 fprintf(err_put, "empty file\n");
