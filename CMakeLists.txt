@@ -3,4 +3,4 @@ project(lab1 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(lab1 encoder.c)
+add_executable(lab1 a_to_d/encoder.c task2/encoder.c)

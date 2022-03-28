@@ -72,11 +72,17 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 
 build cmake_object_order_depends_target_lab1: phony || CMakeFiles/lab1.dir
 
-build CMakeFiles/lab1.dir/encoder.c.o: C_COMPILER__lab1_Debug /home/daniel/CLionProjects/lab1/encoder.c || cmake_object_order_depends_target_lab1
-  DEP_FILE = CMakeFiles/lab1.dir/encoder.c.o.d
+build CMakeFiles/lab1.dir/a_to_d/encoder.c.o: C_COMPILER__lab1_Debug /home/daniel/CLionProjects/lab1/a_to_d/encoder.c || cmake_object_order_depends_target_lab1
+  DEP_FILE = CMakeFiles/lab1.dir/a_to_d/encoder.c.o.d
   FLAGS = -g -std=gnu99
   OBJECT_DIR = CMakeFiles/lab1.dir
-  OBJECT_FILE_DIR = CMakeFiles/lab1.dir
+  OBJECT_FILE_DIR = CMakeFiles/lab1.dir/a_to_d
+
+build CMakeFiles/lab1.dir/task2/encoder.c.o: C_COMPILER__lab1_Debug /home/daniel/CLionProjects/lab1/task2/encoder.c || cmake_object_order_depends_target_lab1
+  DEP_FILE = CMakeFiles/lab1.dir/task2/encoder.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/lab1.dir
+  OBJECT_FILE_DIR = CMakeFiles/lab1.dir/task2
 
 
 # =============================================================================
@@ -86,7 +92,7 @@ build CMakeFiles/lab1.dir/encoder.c.o: C_COMPILER__lab1_Debug /home/daniel/CLion
 #############################################
 # Link the executable lab1
 
-build lab1: C_EXECUTABLE_LINKER__lab1_Debug CMakeFiles/lab1.dir/encoder.c.o
+build lab1: C_EXECUTABLE_LINKER__lab1_Debug CMakeFiles/lab1.dir/a_to_d/encoder.c.o CMakeFiles/lab1.dir/task2/encoder.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/lab1.dir
   POST_BUILD = :
