@@ -5,7 +5,6 @@
 
 int flag_e(FILE *input, FILE *output, int c,int add_sub, int num_of_letters);
 int flag_i(FILE *input, FILE *output, int c,int add_sub, int num_of_letters);
-int flag_o(FILE *input, FILE *output, int c,int add_sub, int num_of_letters);
 
 int main(int argc, char *argv[]) {
     FILE * output= stdout;
@@ -113,7 +112,7 @@ int main(int argc, char *argv[]) {
         }
         case 'o': {
             c = (fgetc(input));
-            flag_o(input,file,c,add_sub,num_of_letters);
+            flag_i(input,file,c,add_sub,num_of_letters);
             fclose(file);
         }
     }
@@ -163,43 +162,6 @@ int flag_e(FILE *input, FILE *output, int c,int add_sub, int num_of_letters) {
 }
 
 int flag_i(FILE *input, FILE *output, int c,int add_sub, int num_of_letters) {
-    while(!feof(input)) {
-        int first_chara = c;
-        if (add_sub == '+' ) {
-            while( c != '\n'){
-                putc(c,output);
-                c = (fgetc(input));
-            }
-            int j;
-            for (j = 0; j < num_of_letters; ++j) {
-                putc(first_chara,output);
-            }
-        }
-        else {
-            int j;
-            for (j = 0; j < num_of_letters; ++j) {
-                if (c == '\n') {
-                    fprintf(output, "-NONE-");
-                    j = num_of_letters + 1;
-                }
-                else
-                    c = (fgetc(input));
-            }
-            while( c != '\n'){
-                putc(c,output);
-                c = (fgetc(input));
-                j = num_of_letters + 2;
-            }
-            if( j != num_of_letters + 2 )
-                fprintf(output, "-NONE-");
-        }
-        fprintf(output,"\n");
-        c = (fgetc(input));
-    }
-    return 0;
-}
-
-int flag_o(FILE *input, FILE *output, int c,int add_sub, int num_of_letters) {
     while(!feof(input)) {
         int first_chara = c;
         if (add_sub == '+' ) {
